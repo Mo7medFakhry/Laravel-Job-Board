@@ -16,6 +16,6 @@
 
 
     @endforeach
-
+<br>
 {{ $posts->links() }}
 </x-layout>

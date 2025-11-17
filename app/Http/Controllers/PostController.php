@@ -10,21 +10,27 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::simplePaginate(5);
+        $posts = Post::cursorPaginate(5);
 
-        return view ('post.index' , ['posts' => $posts , 'pageTitle' => 'Blog']);
+        return view('post.index', ['posts' => $posts, 'pageTitle' => 'Blog']);
     }
 
     public function show($id)
     {
         $post = Post::findOrFail($id);
 
-        return view ('post.show' , ['post' => $post , 'pageTitle' => $post->title]);
+        return view('post.show', ['post' => $post, 'pageTitle' => $post->title]);
     }
 
     public function create()
     {
-        Post::factory(100)->create();
+        Post::factory(30)->create();
+        return redirect('/blog');
+    }
+
+    public function destroy($id)
+    {
+        Post::destroy($id);
         return redirect('/blog');
     }
 }
