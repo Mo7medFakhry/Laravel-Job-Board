@@ -2,35 +2,71 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
 use App\Models\Tag;
-use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
-
-use function Pest\Laravel\post;
 
 class TagController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
-        $tags = Tag::simplePaginate(5);
+        $tags = Tag::cursorPaginate(5);
 
         return view('tag.index', ['tags' => $tags, 'pageTitle' => 'tags']);
     }
 
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create()
     {
-        Tag::create([
-            'title' => 'Software Engineer ' ,
-        ]);
-        return redirect('/tags');
+        return view('tag.create', ['pageTitle' => 'Create New Tag']);
     }
 
-    // public function destroy($id)
-    // {
-    //     Tag::destroy($id);
-    //     return redirect('/blog');
-    // }
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        $tag = Tag::findOrFail($id);
+
+        return view('Tag.show', ['tag' => $tag, 'pageTitle' => "Show Tag"]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit( $id)
+    {
+        return view('tag.edit', [ 'pageTitle' => 'Blog - Edit Tag']);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
+
 
     public function testmanytomany()
     {
