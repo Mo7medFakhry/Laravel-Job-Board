@@ -1,9 +1,9 @@
 <x-layout :title="$pageTitle">
-@if (session('success'))
-    <div class="bg-green-50 px-3 py-2">
-        {{ session('success') }}
-    </div>
-@endif
+    @if (session('success'))
+        <div class="bg-green-50 px-3 py-2">
+            {{ session('success') }}
+        </div>
+    @endif
     <h1 class="text-2xl">{{ $post->title }}</h1>
 
     <p>{{ $post->body }}</p>
@@ -24,7 +24,7 @@
         <form method="POST" action="/comments" class="mt-8">
             @csrf
 
-            <input type="hidden" name="post_id" value="{{ $post->id }}"/>
+            <input type="hidden" name="post_id" value="{{ $post->id }}" />
             <div class="space-y-12">
                 <div class="border-b border-gray-900/10 pb-12">
                     <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
